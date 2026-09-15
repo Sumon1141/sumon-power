@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sumon Power — Lightweight Proxy Demo</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      label { display:block; margin-top:8px }
+      input, select, button, textarea { padding:8px; width:100%; max-width:600px }
+      .profiles { margin-top:16px }
+    </style>
+  </head>
+  <body>
+    <h2>Sumon Power — ওয়েব-প্রক্সি ডেমো</h2>
+    <p>আপনি একটি প্রোফাইল সিলেক্ট করে URL দিন, তারপর "Open" ক্লিক করুন — সার্ভার ঐ সাইট নিয়ে আপনার ব্রাউজারে দেখাবে এবং আমাদের JS ইনজেক্ট করবে।</p>
+
+    <form action="/view" method="post">
+      <label>Target URL (উদাহরণ: example.com)</label>
+      <input name="url" placeholder="https://example.com" required>
+
+      <label>Profile</label>
+      <select name="profile">
+        {% for name, p in profiles.items() %}
+          <option value="{{name}}">{{name}} — {{p.description}}</option>
+        {% endfor %}
+      </select>
+
+      <div style="margin-top:12px">
+        <button type="submit">Open</button>
+      </div>
+    </form>
+
+    <hr>
+    <h3>নতুন প্রোফাইল তৈরি করুন</h3>
+    <form action="/create-profile" method="post">
+      <label>Profile Name</label>
+      <input name="name" placeholder="e.g. Pixel-7" required>
+      <label>User-Agent (optional)</label>
+      <textarea name="user_agent" rows="2" placeholder="Leave empty for default"></textarea>
+      <label>Description (optional)</label>
+      <input name="description" placeholder="Short note">
+      <div style="margin-top:12px">
+        <button type="submit">Create Profile</button>
+      </div>
+    </form>
+
+    <hr>
+    <p>প্রোফাইল ডিফল্ট দেওয়া আছে: {% for name in profiles.keys() %}{{name}} {% endfor %}</p>
+  </body>
+</html>

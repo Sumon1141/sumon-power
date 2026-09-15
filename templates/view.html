@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Viewing proxied site</title>
+    <style>body,html{height:100%;margin:0} iframe{width:100%;height:100%;border:0}</style>
+  </head>
+  <body>
+    <h3>Proxy viewer</h3>
+    <p>If the page did not load or looks broken, the target site may block inline scripts or Content-Security-Policy.</p>
+    <iframe srcdoc="{{ content|e }}"></iframe>
+  </body>
+</html>
